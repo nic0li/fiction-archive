@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<%- include("../includes/head") %>
+  <body>
+<%- include("../includes/header") %>
+    <main class="mainPrincipal mainEditarHistoria">
+
+    <h1 class="tituloEditarHistoria"><%= title %></h1>
+
+    <form action="/story/<%= historia.diretorio %>/edit?_method=PUT" method="POST" enctype="multipart/form-data">
+
+      <label for="titulo">Título</label>
+      <input type="text" id="titulo" name="titulo" placeholder="Título" value="<%= historia.titulo %>">
+
+      <label for="capa">Capa</label>
+      <input type="file" id="capa" name="capa">
+
+      <label for="sinopse">Sinopse</label>
+      <textarea id="sinopse" name="sinopse" placeholder="Sinopse" rows="3" cols="25"><%= historia.sinopse %></textarea>
+      
+      <label for="fkClassificacao">Classificação</label>
+      <select id="fkClassificacao" name="fkClassificacao" placeholder="Classificação">
+        <option value="">Selecione...</option>
+        <% classificacoes.forEach(classificacao => { %>
+        <% if (historia.Classificacao.id == classificacao.id) { %>
+        <option value="<%= historia.Classificacao.id %>" selected><%= historia.Classificacao.nome %></option>
+        <% } else { %>
+        <option value="<%= classificacao.id %>"><%= classificacao.nome %></option>
+        <% } %>
+        <% }); %>
+      </select>
+
+      <label for="finalizada">Finalizada?</label>
+      <% if(historia.finalizada == 1) { %>
+      <input type="checkbox" id="finalizada" name="finalizada" checked="checked">
+      <% } else { %>
+      <input type="checkbox" id="finalizada" name="finalizada">
+      <% } %>
+
+      <button type="submit" class="btnSalvar">Salvar alterações</button>
+      <a href="/mystories"><button type="button" class="btnCancelar">Cancelar</button></a>
+
+    </form>
+
+    </main>
+<%- include("../includes/footer") %>
+<%- include("../includes/scripts") %>
+  </body>
+</html>

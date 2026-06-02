@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<%- include("../includes/head") %>
+  <body>
+<%- include("../includes/header") %>
+    <main class="mainPrincipal mainEditarCapitulo">
+
+    <h1 class="tituloEditarCapitulo"><%= title %></h1>
+
+    <form action="/story/<%= historia.diretorio %>/chapter/<%= capitulo.texto %>/edit?_method=PUT" method="POST">
+
+      <label for="titulo">Título</label>
+      <input type="text" id="titulo" name="titulo" placeholder="Título" value="<%= capitulo.titulo %>">
+
+      <label for="notasIniciais">Notas iniciais</label>
+      <textarea id="notasIniciais" name="notasIniciais" placeholder="Notas iniciais" rows="5" cols="40"><%= capitulo.notasIniciais %></textarea>
+
+      <label for="texto">Capítulo</label>
+      <textarea id="texto" name="texto" placeholder="Texto" rows="10" cols="50" class="textareaCapitulo"><%= conteudoTxt %></textarea>
+
+      <label for="notasFinais">Notas finais</label>
+      <textarea id="notasFinais" name="notasFinais" placeholder="Notas finais" rows="5" cols="40"><%= capitulo.notasFinais %></textarea>
+
+      <button type="submit" class="btnSalvar">Salvar alterações</button>
+      <a href="/mystories/<%= historia.diretorio %>/chapters"><button type="button" class="btnCancelar">Cancelar</button></a>
+
+    </form>
+
+    </main>
+<%- include("../includes/footer") %>
+<%- include("../includes/scripts") %>
+
+<script type="text/javascript">
+
+
+
+</script>
+
+  </body>
+</html>

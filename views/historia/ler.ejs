@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<%- include("../includes/head") %>
+  <body>
+<%- include("../includes/header") %>
+    <main class="mainPrincipal mainHistoria">
+
+    <h1 class="tituloHistoria"><%= historia.titulo %></h1>
+
+    <h2>Escrita por <%= usuario.nomeUsuario %></h2>
+
+    <!--<%= historia.capa %>-->
+    <!--<img src="">-->
+
+    <p>Publicada em <%= moment(historia.createdAt).format("LLL") %></p>
+
+    <p><b>Classificação:</b> <%= historia.Classificacao.nome %></p>
+    
+    <% if (historia.finalizada == true) { %>
+    <p><b>Status:</b> Finalizada</p>
+    <% } else if (historia.finalizada == false) { %>
+    <p><b>Status:</b> Em andamento</p>
+    <% } %>
+
+    <p><b>Sinopse:</b> <%= historia.sinopse %></p>
+
+    <h2>Capítulos</h2>
+
+    <table class="tabelaDados">
+        <% capitulos.forEach(capitulo => { %>
+        <tr>
+          <td> <%= capitulo.titulo %></td>
+          <td>
+            <a href="/story/<%= historia.diretorio %>/chapter/<%= capitulo.texto %>"><button type="button" class="btnLer">Ler</button></a>
+            </form>
+          </td>
+        </tr>
+        <% }); %>
+    </table>
+
+    </main>
+<%- include("../includes/footer") %>
+<%- include("../includes/scripts") %>
+  </body>
+</html>

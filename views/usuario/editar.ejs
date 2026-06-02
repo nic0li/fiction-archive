@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<%- include("../includes/head") %>
+  <body>
+<%- include("../includes/header") %>
+    <main class="mainPrincipal mainEditarUsuario">
+
+    <h1 class="tituloEditarUsuario"><%= title %></h1>
+
+    <ul class="listaDeErros" hidden></ul>
+
+    <% if (typeof authUsuario !== "undefined") { %>
+    <form action="/settings?_method=PUT" method="POST" enctype="multipart/form-data" class="formEditarUsuario">
+      <% } else if (typeof authAdmin !== "undefined") { %>
+    <form action="/admin/user/edit/<%= usuario.id %>?_method=PUT" method="POST" enctype="multipart/form-data" class="formEditarUsuario">
+    <% } %>
+
+      <button type="button" class="btnModalAvatar">Alterar foto</button>
+
+      <button type="button" class="btnModalSenha">Alterar senha</button>
+
+      <label for="nomeUsuario">Nome de usuário</label>
+      <input type="text" id="nomeUsuario" name="nomeUsuario" placeholder="Nome de usuário" value="<%= usuario.nomeUsuario %>">
+
+      <label for="email">E-mail</label>
+      <input type="email" id="email" name="email" placeholder="E-mail" value="<%= usuario.email %>">
+
+      <label for="nome">Nome</label>
+      <input type="text" id="nome" name="nome" placeholder="Nome" value="<%= usuario.nome %>">
+
+      <label for="descricao">Descrição</label>
+      <textarea id="descricao" name="descricao" placeholder="Descrição" rows="3" cols="25"><%= usuario.descricao %></textarea>
+
+      <label for="dataNascimento">Data de nascimento</label>
+      <input type="date" id="dataNascimento" name="dataNascimento" placeholder="Data de nascimento" value="<%= usuario.dataNascimento %>">
+
+      <label for="genero">Gênero</label>
+      <select id="genero" name="genero">
+       <% if ((usuario.genero == null) || (usuario.genero == "")) { %>
+        <option id="" name="" value="" selected>Selecione...</option>
+       <% } else { %>
+        <option id="" name="" value="">Selecione...</option>
+       <% } %>
+      <% for (let i=0; i<generos.length; i+=2) { %>
+        <% if (usuario.genero == generos[i]) { %>
+          <option id="" name="" value="<%= generos[i] %>" selected><%= generos[i+1] %></option>
+        <% } else { %>
+          <option id="" name="" value="<%= generos[i] %>"><%= generos[i+1] %></option>
+        <% } %>
+      <% } %>
+      </select>
+
+      <label for="localizacao">Localização</label>
+      <select id="localizacao" name="localizacao">
+        <option id="" name="" value="<%= usuario.localizacao %>" selected>Selecione...</option>
+      </select>
+      
+      <button type="submit" class="btnSalvar">Salvar alterações</button>
+
+    </form>
+
+      <% if (typeof authUsuario !== "undefined") { %>
+
+      <a href="/home"><button type="button" class="btnCancelar">Cancelar</button></a>
+
+      <form action="/delete/<%= authUsuario.id %>?_method=DELETE" method="POST">
+        <button type="submit" class="btnExcluir">Excluir conta</button>
+      </form>
+
+      <% } else if (typeof authAdmin !== "undefined") { %>
+
+      <a href="/admin/users"><button type="button" class="btnCancelar">Cancelar</button></a>
+
+      <% } %>
+
+    </main>
+
+    <div id="modalAlterarSenha" class="modalContainer">
+      <div class="modalSenha">
+
+        <button type="button" class="btnFecharModalSenha">X</button>
+
+        <h1 class="tituloAlterarSenha">Alterar senha</h1>
+
+        <div class="alertaSenha"></div>
+
+        <% if (typeof authUsuario !== "undefined") { %>
+        <form action="/settings/password" method="POST" class="formAlterarSenha">
+          <% } else if (typeof authAdmin !== "undefined") { %>
+        <form action="/admin/user/edit/<%= usuario.id %>/password" method="POST" class="formAlterarSenha">
+        <% } %>
+        
+        <label for="senha">Digite sua nova senha</label>
+        <input type="password" id="senha" name="senha" placeholder="Senha" value="">
+
+        <button type="submit" class="btnAlterarSenha">Salvar alterações</button>
+
+        <button type="button" class="btnFecharSenha">Fechar</button>
+
+        </form>
+
+      </div>
+    </div>
+
+    <div id="modalAlterarAvatar" class="modalContainer">
+      <div class="modalAvatar">
+
+        <button type="button" class="btnFecharModalAvatar">X</button>
+
+        <h1 class="tituloAlterarAvatar">Alterar foto</h1>
+
+        <div class="alertaAvatar"></div>
+
+        <% if (typeof authUsuario !== "undefined") { %>
+        <form action="/settings/avatar" method="POST" enctype="multipart/form-data" class="formAlterarAvatar">
+          <% } else if (typeof authAdmin !== "undefined") { %>
+        <form action="/admin/user/edit/<%= usuario.id %>/avatar" method="POST" enctype="multipart/form-data" class="formAlterarAvatar">
+        <% } %>
+        
+      <label for="avatar">Selecione a foto</label>
+      <input type="file" id="avatar" name="avatar">
+
+        <button type="submit" class="btnAlterarAvatar">Salvar alterações</button>
+
+        <button type="button" class="btnFecharAvatar">Fechar</button>
+
+        </form>
+
+      </div>
+    </div>
+
+<%- include("../includes/footer") %>
+<%- include("../includes/scripts") %>
+
+<script type="text/javascript">
+
+// API RESTCOUNTRIES
+
+const listaDePaises = document.querySelector("#localizacao");
+
+async function listarPaises() {
+  
+    const resposta = await fetch("https://restcountries.eu/rest/v2/all");
+    const paises = await resposta.json();
+    const localizacao = "<%= usuario.localizacao %>";
+    const selecionar = `<option id="" name="" value="">Selecione...</option>`;
+    listaDePaises.innerHTML = selecionar;
+    
+    paises.forEach(pais => {
+      if (localizacao === null || localizacao === "") {
+        if (pais.translations.br === selecionar) {
+            listaDePaises.innerHTML +=
+                `<option id="" name="" value="${pais.translations.br}" selected>${pais.translations.br}</option>`;
+        } else {
+            listaDePaises.innerHTML +=
+                `<option id="" name="" value="${pais.translations.br}">${pais.translations.br}</option>`;
+        }
+      } else {
+        if (pais.translations.br === localizacao) {
+            listaDePaises.innerHTML +=
+                `<option id="" name="" value="${pais.translations.br}" selected>${pais.translations.br}</option>`;
+        } else {
+            listaDePaises.innerHTML +=
+                `<option id="" name="" value="${pais.translations.br}">${pais.translations.br}</option>`;
+        }
+      }
+    });
+    return paises;
+}
+listarPaises();
+
+// MODAL ALTERAR SENHA
+
+function iniciaModalSenha(modalID) {
+  const modalSenha = document.getElementById(modalID);
+  //console.log(modalSenha);
+  if(modalSenha) {
+    modalSenha.classList.add("mostrarModalSenha");
+    modalSenha.addEventListener("click", function (event) {
+      if(event.target.id == modalID || event.target.className == "btnFecharModalSenha" || event.target.className == "btnFecharSenha") {
+        modalSenha.classList.remove("mostrarModalSenha");
+      }
+    });
+  }
+}
+const btnModalSenha = document.querySelector(".btnModalSenha");
+btnModalSenha.addEventListener("click", function () {
+  iniciaModalSenha("modalAlterarSenha");
+});
+
+// MODAL ALTERAR AVATAR
+
+function iniciaModalAvatar(modalID) {
+  const modalAvatar = document.getElementById(modalID);
+  //console.log(modalAvatar);
+  if(modalAvatar) {
+    modalAvatar.classList.add("mostrarModalAvatar");
+    modalAvatar.addEventListener("click", function (event) {
+      if(event.target.id == modalID || event.target.className == "btnFecharModalAvatar" || event.target.className == "btnFecharAvatar") {
+        modalAvatar.classList.remove("mostrarModalAvatar");
+      }
+    });
+  }
+}
+const btnModalAvatar = document.querySelector(".btnModalAvatar");
+btnModalAvatar.addEventListener("click", function () {
+  iniciaModalAvatar("modalAlterarAvatar");
+});
+
+// ALTERAR SENHA
+
+const senha = document.getElementById("senha");
+const btnAlterarSenha = document.querySelector(".btnAlterarSenha");
+const alertaSenha = document.querySelector(".alertaSenha");
+const urlUsuario = "/settings/password";
+const urlAdmin = "/admin/user/edit/<%= usuario.id %>/password";
+
+console.log(urlAdmin);
+
+btnAlterarSenha.addEventListener("click", async function alterarSenha(event) {
+  event.preventDefault();
+  if (senha.value === "") {
+      return alertaSenha.innerHTML = "<p>Senha não pode ficar em branco!</p>";
+  } else {
+
+      function url () {
+        if (typeof authUsuario !== "undefined") {
+          return urlUsuario;
+        } else if (typeof authAdmin !== "undefined") {
+          return urlAdmin;
+        }
+      }
+
+      const resposta = await fetch(url(), {
+          method: "POST",
+          headers: {
+              "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+              senha: senha.value,
+          }),
+      });
+
+      console.log(resposta);
+      if (resposta.status == 202) {
+          alertaSenha.value = "";
+          senha.value = "";
+          return alertaSenha.innerHTML = "<p>Senha alterada com sucesso!</p>";
+      } else {
+          alertaSenha.value = "";
+          senha.value = "";
+          return alertaSenha.innerHTML = "<p>Erro na alteração! Tente novamente</p>";
+      }
+  }
+});
+
+// ALTERAR AVATAR
+
+const fotoAvatar = document.getElementById("avatar");
+const btnAlterarAvatar = document.querySelector(".btnAlterarAvatar");
+const alertaAvatar = document.querySelector(".alertaAvatar");
+
+btnAlterarAvatar.addEventListener("click", async function alterarAvatar(event) {
+  event.preventDefault();
+
+  const formData = new FormData();
+  formData.append(fotoAvatar.value, fotoAvatar.files[0]);
+
+    if (formData.files == 0) {
+      return alertaAvatar.innerHTML = "<p>Selecione a foto desejada.</p>";
+    } else {
+      const resposta = await fetch("/settings/avatar", {
+        method: "POST",
+        body: formData,
+      });
+      console.log(resposta);
+      if (resposta.status == 202) {
+        alertaAvatar.value = "";
+        return alertaAvatar.innerHTML = "<p>Foto alterada com sucesso!</p>";
+      } else {
+        alertaAvatar.value = "";
+        return alertaAvatar.innerHTML = "<p>Erro na alteração! Tente novamente</p>";
+      }
+    }
+});
+
+</script>
+
+<script type="text/javascript" src="/../../javascripts/validarUsuario.js"></script>
+
+  </body>
+</html>

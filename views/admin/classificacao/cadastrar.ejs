@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<%- include("../../includes/head") %>
+  <body>
+<%- include("../../includes/header") %>
+    <main class="mainPrincipal mainCadastrarClassificacao">
+
+    <h1 class="tituloCadastrarClassificacao"><%= title %></h1>
+
+    <form action="/admin/rating/new" method="POST">
+      <input type="text" id="nome" name="nome" placeholder="Classificação">
+      <button type="submit" class="btnCadastrar">Cadastrar</button>
+      <a href="/admin/ratings"><button type="button" class="btnCancelar">Cancelar</button></a>
+    </form>
+
+    </main>
+<%- include("../../includes/footer") %>
+<%- include("../../includes/scripts") %>
+  </body>
+</html>

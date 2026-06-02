@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<%- include("../includes/head") %>
+  <body>
+<%- include("../includes/header") %>
+    <main class="mainPrincipal mainIndexHistorias">
+
+    <h1 class="tituloIndexHistorias"><%= title %></h1>
+
+    <table class="tabelaDados">
+        <% historias.forEach(historia => { %>
+        <tr>
+          <td> <%= historia.titulo %></td>
+          <td>        
+            <% if (typeof authUsuario !== "undefined") { %>
+
+            <a href="/story/<%= historia.diretorio %>"><button type="button" class="btnLer">Ler</button></a>
+            <a href="/story/<%= historia.diretorio %>/chapters"><button type="button" class="btnLer">Capítulos</button></a>
+
+            <% } else if (typeof authAdmin !== "undefined") { %>
+
+            <a href="/admin/story/<%= historia.diretorio %>"><button type="button" class="btnLer">Ler</button></a>
+            <!--<a href="/admin/story/<%= historia.diretorio %>/chapters"><button type="button" class="btnLer">Capítulos</button></a>-->
+
+            <form action="/admin/story/<%= historia.diretorio %>/delete?_method=DELETE" method="POST">
+              <button type="submit" class="btnExcluir">Excluir</button>
+            </form>
+
+            <% } %>
+          </td>
+        </tr>
+        <% }); %>
+    </table>
+
+    </main>
+<%- include("../includes/footer") %>
+<%- include("../includes/scripts") %>
+  </body>
+</html>

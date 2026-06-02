@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<%- include("../includes/head") %>
+  <body>
+<%- include("../includes/header") %>
+    <main class="mainPrincipal mainListarCapitulos">
+
+    <h1 class="tituloListarCapitulos"><%= title %></h1>
+
+    <p><a href="/story/<%= historia.diretorio %>/chapter/new"><button type="button" class="btnAdicionar">Novo capítulo</button></a></p>
+
+    <table class="tabelaDados">
+        <% capitulos.forEach(capitulo => { %>
+        <tr>
+          <td> <%= capitulo.titulo %></td>
+          <td>
+            <a href="/story/<%= historia.diretorio %>/chapter/<%= capitulo.texto %>"><button type="button" class="btnLer">Ler</button></a>
+            <a href="/story/<%= historia.diretorio %>/chapter/<%= capitulo.texto %>/edit"><button type="button" class="btnEditar">Editar</button></a>
+            <form action="/story/<%= historia.diretorio %>/chapter/<%= capitulo.texto %>/delete?_method=DELETE" method="POST">
+              <button type="submit" class="btnExcluir">Excluir</button>
+            </form>
+          </td>
+        </tr>
+        <% }); %>
+    </table>
+
+    </main>
+<%- include("../includes/footer") %>
+<%- include("../includes/scripts") %>
+  </body>
+</html>

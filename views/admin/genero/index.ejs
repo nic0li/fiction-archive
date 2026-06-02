@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<%- include("../../includes/head") %>
+  <body>
+<%- include("../../includes/header") %>
+    <main class="mainPrincipal mainIndexGeneros">
+
+    <h1 class="tituloIndexGeneros"><%= title %></h1>
+
+    <p><a href="/admin/genre/new"><button type="button" class="btnAdicionar">Adicionar</button></a></p>
+
+    <table class="tabelaDados">
+        <tr>
+          <th>Gênero</th>
+          <th>Descrição</th>
+          <th>Ações</th>
+        </tr>
+        <% generos.forEach(genero => { %>
+        <tr>
+          <td> <%= genero.nome %></td>
+          <td> <%= genero.descricao %></td>
+          <td>
+            <a href="/admin/genre/edit/<%= genero.id %>"><button type="button" class="btnEditar">Editar</button></a>
+            <form action="/admin/genre/delete/<%= genero.id %>?_method=DELETE" method="POST">
+              <button type="submit" class="btnExcluir">Excluir</button>
+            </form>
+          </td>
+        </tr>
+        <% }); %>
+    </table>
+
+    </main>
+<%- include("../../includes/footer") %>
+<%- include("../../includes/scripts") %>
+  </body>
+</html>

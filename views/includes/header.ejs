@@ -1,30 +1,30 @@
 <header class="headerPrincipal">
-    <nav class="conteudoTopo">
-        <a class="logoTopo" href="/">Projeto</a>
-        <ul>
-            
-            <% if (typeof authUsuario === "undefined" && typeof authAdmin === "undefined") { %>
+  <nav class="conteudoTopo">
+    <a class="logoTopo" href="/">Fiction Archive</a>
+    <ul>
 
-            <li><a href="/">Início</a></li>
-            <li><a href="/signup">Cadastre-se</a></li>
-            <li><a href="/login">Entre</a></li>
+      <% if (typeof authUser==="undefined" && typeof authAdmin==="undefined" ) { %>
 
-            <% } else if (typeof authUsuario !== "undefined") { %>
+        <li><a href="/">Home</a></li>
+        <li><a href="/register">Register</a></li>
+        <li><a href="/login">Login</a></li>
 
-            <li><a href="/user/<%= authUsuario.nomeUsuario %>">@<%= authUsuario.nomeUsuario %></a></li>
-            <li><a href="/home">Início</a></li>
-            <li><a href="/stories">Histórias</a></li>
-            <li><a href="/users">Usuários</a></li>
-            <li><a href="/logout">Sair</a></li>
+        <% } else if (typeof authUser !=="undefined" ) { %>
 
-            <% } else if (typeof authAdmin !== "undefined") { %>
+          <li><a href="/user/<%= authUser.username %>">@<%= authUser.username %></a></li>
+          <li><a href="/home">Home</a></li>
+          <li><a href="/stories">Stories</a></li>
+          <li><a href="/users">Users</a></li>
+          <li><a href="/logout">Logout</a></li>
 
-            <li><a href="/user/<%= authAdmin.nomeUsuario %>">@<%= authAdmin.nomeUsuario %></a></li>
-            <li><a href="/admin/painel">Início</a></li>     
-            <li><a href="/admin/logout">Sair</a></li>
+          <% } else if (typeof authAdmin !=="undefined" ) { %>
+
+            <li><a href="/user/<%= authAdmin.username %>">@<%= authAdmin.username %></a></li>
+            <li><a href="/admin/home">Home</a></li>
+            <li><a href="/admin/logout">Logout</a></li>
 
             <% } %>
 
-        </ul>
-    </nav>
+    </ul>
+  </nav>
 </header>

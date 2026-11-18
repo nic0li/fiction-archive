@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<%- include("includes/head") %>
+
+  <body>
+    <%- include("includes/header") %>
+      <main class="mainPrincipal mainLogin">
+
+        <h1 class="titleLogin">
+          <%= title %>
+        </h1>
+
+        <form action="/login" method="POST">
+
+          <label for="login">Username or email</label>
+          <input type="login" id="login" name="login" placeholder="Username or email">
+
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" placeholder="Password">
+
+          <button type="submit" class="btnLogin">Login</button>
+          <a href="/register"><button type="button" class="btnUser">Register</button></a>
+
+          <% if( typeof erroLogin !=="undefined" ) {%>
+            <p>
+              <%= erroLogin %>
+            </p>
+            <% } %>
+
+        </form>
+
+      </main>
+      <%- include("includes/footer") %>
+        <%- include("includes/scripts") %>
+  </body>
+
+</html>

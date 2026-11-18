@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<%- include("../includes/head") %>
+
+  <body>
+    <%- include("../includes/header") %>
+      <main class="mainPrincipal mainEditUser">
+
+        <h1 class="titleEditUser">
+          <%= title %>
+        </h1>
+
+        <ul class="errorList" hidden></ul>
+
+        <% if (typeof authUser !=="undefined" ) { %>
+          <form action="/settings?_method=PUT" method="POST" enctype="multipart/form-data" class="formEditUser">
+            <% } else if (typeof authAdmin !=="undefined" ) { %>
+              <form action="/admin/user/edit/<%= user.id %>?_method=PUT" method="POST" enctype="multipart/form-data"
+                class="formEditUser">
+                <% } %>
+
+                  <button type="button" class="btnModalAvatar">Change avatar</button>
+
+                  <button type="button" class="btnModalPassword">Change password</button>
+
+                  <label for="username">Username</label>
+                  <input type="text" id="username" name="username" placeholder="Username" value="<%= user.username %>">
+
+                  <label for="email">Email</label>
+                  <input type="email" id="email" name="email" placeholder="Email" value="<%= user.email %>">
+
+                  <label for="name">Name</label>
+                  <input type="text" id="name" name="name" placeholder="Name" value="<%= user.name %>">
+
+                  <label for="description">Description</label>
+                  <textarea id="description" name="description" placeholder="Description" rows="3"
+                    cols="25"><%= user.description %></textarea>
+
+                  <button type="submit" class="btnSave">Save</button>
+
+              </form>
+
+              <% if (typeof authUser !=="undefined" ) { %>
+
+                <a href="/home"><button type="button" class="btnCancel">Cancel</button></a>
+
+                <form action="/delete/<%= authUser.id %>?_method=DELETE" method="POST">
+                  <button type="submit" class="btnDelete">Delete account</button>
+                </form>
+
+                <% } else if (typeof authAdmin !=="undefined" ) { %>
+
+                  <a href="/admin/users"><button type="button" class="btnCancel">Cancel</button></a>
+
+                  <% } %>
+
+      </main>
+
+      <div id="modalChangePassword" class="modalContainer">
+        <div class="modalPassword">
+
+          <button type="button" class="btnCloseModalPassword">X</button>
+
+          <h1 class="titleChangePassword">Change password</h1>
+
+          <div class="alertPassword"></div>
+
+          <% if (typeof authUser !=="undefined" ) { %>
+            <form action="/settings/password" method="POST" class="formChangePassword">
+              <% } else if (typeof authAdmin !=="undefined" ) { %>
+                <form action="/admin/user/edit/<%= user.id %>/password" method="POST" class="formChangePassword">
+                  <% } %>
+
+                    <label for="password">Digite sua nova password</label>
+                    <input type="password" id="password" name="password" placeholder="Password" value="">
+
+                    <button type="submit" class="btnChangePassword">Save</button>
+
+                    <button type="button" class="btnClosePassword">Close</button>
+
+                </form>
+
+        </div>
+      </div>
+
+      <div id="modalChangeAvatar" class="modalContainer">
+        <div class="modalAvatar">
+
+          <button type="button" class="btnCloseModalAvatar">X</button>
+
+          <h1 class="titleChangeAvatar">Change foto</h1>
+
+          <div class="alertAvatar"></div>
+
+          <% if (typeof authUser !=="undefined" ) { %>
+            <form action="/settings/avatar" method="POST" enctype="multipart/form-data" class="formChangeAvatar">
+              <% } else if (typeof authAdmin !=="undefined" ) { %>
+                <form action="/admin/user/edit/<%= user.id %>/avatar" method="POST" enctype="multipart/form-data"
+                  class="formChangeAvatar">
+                  <% } %>
+
+                    <label for="avatar">Selecione a foto</label>
+                    <input type="file" id="avatar" name="avatar">
+
+                    <button type="submit" class="btnChangeAvatar">Save</button>
+
+                    <button type="button" class="btnCloseAvatar">Close</button>
+
+                </form>
+
+        </div>
+      </div>
+
+      <%- include("../includes/footer") %>
+        <%- include("../includes/scripts") %>
+
+          <script type="text/javascript">
+
+            // MODAL ALTERAR SENHA
+
+            function iniciaModalPassword(modalID) {
+              const modalPassword = document.getElementById(modalID);
+              //console.log(modalPassword);
+              if (modalPassword) {
+                modalPassword.classList.add("mostrarModalPassword");
+                modalPassword.addEventListener("click", function (event) {
+                  if (event.target.id == modalID || event.target.className == "btnCloseModalPassword" || event.target.className == "btnClosePassword") {
+                    modalPassword.classList.remove("mostrarModalPassword");
+                  }
+                });
+              }
+            }
+            const btnModalPassword = document.querySelector(".btnModalPassword");
+            btnModalPassword.addEventListener("click", function () {
+              iniciaModalPassword("modalChangePassword");
+            });
+
+            // MODAL ALTERAR AVATAR
+
+            function iniciaModalAvatar(modalID) {
+              const modalAvatar = document.getElementById(modalID);
+              //console.log(modalAvatar);
+              if (modalAvatar) {
+                modalAvatar.classList.add("mostrarModalAvatar");
+                modalAvatar.addEventListener("click", function (event) {
+                  if (event.target.id == modalID || event.target.className == "btnCloseModalAvatar" || event.target.className == "btnCloseAvatar") {
+                    modalAvatar.classList.remove("mostrarModalAvatar");
+                  }
+                });
+              }
+            }
+            const btnModalAvatar = document.querySelector(".btnModalAvatar");
+            btnModalAvatar.addEventListener("click", function () {
+              iniciaModalAvatar("modalChangeAvatar");
+            });
+
+            // ALTERAR SENHA
+
+            const password = document.getElementById("password");
+            const btnChangePassword = document.querySelector(".btnChangePassword");
+            const alertPassword = document.querySelector(".alertPassword");
+            const urlUser = "/settings/password";
+            const urlAdmin = "/admin/user/edit/<%= user.id %>/password";
+
+            console.log(urlAdmin);
+
+            btnChangePassword.addEventListener("click", async function alterarPassword(event) {
+              event.preventDefault();
+              if (password.value === "") {
+                return alertPassword.innerHTML = "<p>Password não pode ficar em branco!</p>";
+              } else {
+
+                function url() {
+                  if (typeof authUser !== "undefined") {
+                    return urlUser;
+                  } else if (typeof authAdmin !== "undefined") {
+                    return urlAdmin;
+                  }
+                }
+
+                const resposta = await fetch(url(), {
+                  method: "POST",
+                  headers: {
+                    "Content-Type": "application/json",
+                  },
+                  body: JSON.stringify({
+                    password: password.value,
+                  }),
+                });
+
+                console.log(resposta);
+                if (resposta.status == 202) {
+                  alertPassword.value = "";
+                  password.value = "";
+                  return alertPassword.innerHTML = "<p>Password alterada com sucesso!</p>";
+                } else {
+                  alertPassword.value = "";
+                  password.value = "";
+                  return alertPassword.innerHTML = "<p>Erro na alteração! Tente novamente</p>";
+                }
+              }
+            });
+
+            // ALTERAR AVATAR
+
+            const fotoAvatar = document.getElementById("avatar");
+            const btnChangeAvatar = document.querySelector(".btnChangeAvatar");
+            const alertAvatar = document.querySelector(".alertAvatar");
+
+            btnChangeAvatar.addEventListener("click", async function alterarAvatar(event) {
+              event.preventDefault();
+
+              const formData = new FormData();
+              formData.append(fotoAvatar.value, fotoAvatar.files[0]);
+
+              if (formData.files == 0) {
+                return alertAvatar.innerHTML = "<p>Selecione a foto desejada.</p>";
+              } else {
+                const resposta = await fetch("/settings/avatar", {
+                  method: "POST",
+                  body: formData,
+                });
+                console.log(resposta);
+                if (resposta.status == 202) {
+                  alertAvatar.value = "";
+                  return alertAvatar.innerHTML = "<p>Foto alterada com sucesso!</p>";
+                } else {
+                  alertAvatar.value = "";
+                  return alertAvatar.innerHTML = "<p>Erro na alteração! Tente novamente</p>";
+                }
+              }
+            });
+
+          </script>
+
+          <script type="text/javascript" src="/../../javascripts/validarUser.js"></script>
+
+  </body>
+
+</html>

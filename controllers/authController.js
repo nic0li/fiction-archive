@@ -1,60 +1,54 @@
-const bcrypt = require("bcryptjs");
-const { Usuario } = require("../models");
-const { Op } = require("sequelize");
+
+const authService = require("../services/authService");
 
 const authController = {
 
-    home: (req, res) => {
-        if (req.session.authUsuario) {
-            return res.redirect("/home");
-        } else if (req.session.authAdmin) {
-            return res.redirect("/admin/painel");
-        } else {
-            return res.render("index", { title: "Início" });
-        }
-    },
+  index: (req, res) => {
+    if (req.session.authUser) {
+      return res.redirect("/home");
+    }
+    if (req.session.authAdmin) {
+      return res.redirect("/admin/home");
+    }
+    return res.redirect("/login");
+  },
 
-    index: (req, res) => {
-        return res.render("home", { title: "Início" });
-    },
+  home: (req, res) => {
+    return res.render("home", { title: "Home" });
+  },
 
-    create: (req, res) => {
-        if (req.session.authUsuario) {
-            return res.redirect("/home");
-        } else if (req.session.authAdmin) {
-            return res.redirect("/admin/painel");
-        } else {
-            return res.render("auth/login", { title: "Entre" });
-        }
-    },
+  checkSession: (req, res) => {
+    if (req.session.authUser) {
+      return res.redirect("/home");
+    }
+    if (req.session.authAdmin) {
+      return res.redirect("/admin/home");
+    }
+    return res.render("login", { title: "Login" });
+  },
 
-    store: async (req, res) => {
-        const { login, senha } = req.body;
-        const [usuario] = await Usuario.findAll({
-            where: {[Op.or]:[
-                { email: login }, 
-                { nomeUsuario: login },
-            ]},
-        });
-        if (!usuario || !bcrypt.compareSync(senha, usuario.senha)) {
-            return res.render("auth/login", {
-                title: "Entre",
-                erroLogin: "E-mail ou senha incorretos!", 
-            });
-        } else {
-            req.session.authUsuario = {
-            id: usuario.id,
-            nomeUsuario: usuario.nomeUsuario,
-            email: usuario.email,
-            };
-            return res.redirect("/home");
-        }
-    },
+  login: async (req, res) => {
+    const { login, password } = req.body;
+    const result = await authService.loginUser(login, password);
+    if (!result.success) {
+      return res.render("login", {
+        title: "Login",
+        erroLogin: result.message,
+      });
+    }
+    const { user } = result;
+    req.session.authUser = {
+      id: user.id,
+      username: user.username,
+      email: user.email,
+    };
+    return res.redirect("/home");
+  },
 
-    destroy: (req, res) => {
-        req.session.authUsuario = undefined;
-        return res.redirect("/");
-    },
+  logout: (req, res) => {
+    req.session.authUser = undefined;
+    return res.redirect("/");
+  },
 
 };
 

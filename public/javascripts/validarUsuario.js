@@ -1,39 +1,36 @@
 function campoVazio(campo) {
-    return campo.value.trim() === "";
+  return campo.value.trim() === "";
 }
 
 function campoNaoPreenchido(campo) {
-    return listaDeErros.innerHTML += "<li>Campo <b>" + campo + "</b> não preenchido</li>";
+  return errorList.innerHTML += "<li>Campo <b>" + campo + "</b> não preenchido</li>";
 }
 
-const formUsuario = document.querySelector(".formEditarUsuario");
+const formUser = document.querySelector(".formEditUser");
 
-const nomeUsuario = document.getElementById("nomeUsuario");
+const username = document.getElementById("username");
 const email = document.getElementById("email");
-const nome = document.getElementById("nome");
+const name = document.getElementById("name");
 const avatar = document.getElementById("avatar");
-const descricao = document.getElementById("descricao");
-const dataNascimento = document.getElementById("dataNascimento");
-const genero = document.getElementById("genero");
-const localizacao = document.getElementById("localizacao");
+const description = document.getElementById("description");
 
-const listaDeErros = document.querySelector(".listaDeErros");
+const errorList = document.querySelector(".errorList");
 
-formUsuario.addEventListener("submit", function (event) {
+formUser.addEventListener("submit", function (event) {
 
-    listaDeErros.innerHTML = "";
+  errorList.innerHTML = "";
 
-    if (campoVazio(nomeUsuario)) {
-        campoNaoPreenchido("nome de usuário");
-    };
+  if (campoVazio(username)) {
+    campoNaoPreenchido("username");
+  };
 
-    if (campoVazio(email)) {
-        campoNaoPreenchido("e-mail");
-    };
+  if (campoVazio(email)) {
+    campoNaoPreenchido("email");
+  };
 
-    if (listaDeErros.querySelectorAll("li").length > 0) {
-        event.preventDefault();
-        listaDeErros.hidden = "";
-    };
+  if (errorList.querySelectorAll("li").length > 0) {
+    event.preventDefault();
+    errorList.hidden = "";
+  };
 
 });

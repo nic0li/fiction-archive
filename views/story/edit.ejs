@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<%- include("../includes/head") %>
+
+  <body>
+    <%- include("../includes/header") %>
+      <main class="mainPrincipal mainEditStory">
+
+        <h1 class="titleEditStory">
+          <%= title %>
+        </h1>
+
+        <form action="/story/<%= story.directory %>/edit?_method=PUT" method="POST" enctype="multipart/form-data">
+
+          <label for="title">Title</label>
+          <input type="text" id="title" name="title" placeholder="Title" value="<%= story.title %>">
+
+          <label for="cover">Cover</label>
+          <input type="file" id="cover" name="cover">
+
+          <label for="synopsis">Synopsis</label>
+          <textarea id="synopsis" name="synopsis" placeholder="Synopsis" rows="3"
+            cols="25"><%= story.synopsis %></textarea>
+
+          <label for="ratingId">Rating</label>
+          <select id="ratingId" name="ratingId" placeholder="Rating">
+            <option value="">Selecione...</option>
+            <% ratings.forEach(rating=> { %>
+              <% if (story.Rating.id==rating.id) { %>
+                <option value="<%= story.Rating.id %>" selected>
+                  <%= story.Rating.name %>
+                </option>
+                <% } else { %>
+                  <option value="<%= rating.id %>">
+                    <%= rating.name %>
+                  </option>
+                  <% } %>
+                    <% }); %>
+          </select>
+
+          <label for="isCompleted">Finished?</label>
+          <% if(story.isCompleted==1) { %>
+            <input type="checkbox" id="isCompleted" name="isCompleted" checked="checked">
+            <% } else { %>
+              <input type="checkbox" id="isCompleted" name="isCompleted">
+              <% } %>
+
+                <button type="submit" class="btnSave">Save</button>
+                <a href="/mystories"><button type="button" class="btnCancel">Cancel</button></a>
+
+        </form>
+
+      </main>
+      <%- include("../includes/footer") %>
+        <%- include("../includes/scripts") %>
+  </body>
+
+</html>

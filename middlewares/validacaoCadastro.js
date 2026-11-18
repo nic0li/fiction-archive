@@ -1,39 +1,39 @@
-const { Usuario } = require("../models");
+const { User } = require("../models");
 const { check, validationResult, body } = require("express-validator");
 
-const validacaoUsuario = [
-check("nomeUsuario").isLength({min: 3}).withMessage("O nome de usuário é muito curto"),
-check("email").isEmail().withMessage("O e-mail não é válido"),
-check("senha").isLength({min: 3}).withMessage("A senha é muito curta"),
+const validacaoUser = [
+  check("username").isLength({ min: 3 }).withMessage("O username é muito curto"),
+  check("email").isEmail().withMessage("O email não é válido"),
+  check("password").isLength({ min: 3 }).withMessage("A password é muito curta"),
 
-body("nomeUsuario").custom(async nomeUsuario => {
-    const usuario = await Usuario.findAll({
-        where: { nomeUsuario },
+  body("username").custom(async username => {
+    const user = await User.findAll({
+      where: { username },
     });
     let array = [];
-    usuario.forEach(usuario => {
-        array.push(usuario.nomeUsuario);
+    user.forEach(user => {
+      array.push(user.username);
     });
-    if (array.includes(nomeUsuario)) {
-        return Promise.reject("O nome de usuário já está cadastrado no sistema");
+    if (array.includes(username)) {
+      return Promise.reject("O username já está cadastrado no sistema");
     }
 
-}),
+  }),
 
-body("email").custom(async email => {
-    const usuario = await Usuario.findAll({
-        where: { email },
+  body("email").custom(async email => {
+    const user = await User.findAll({
+      where: { email },
     });
     let array = [];
-    usuario.forEach(usuario => {
-        array.push(usuario.email);
+    user.forEach(user => {
+      array.push(user.email);
     });
     if (array.includes(email)) {
-        return Promise.reject("O e-mail já está cadastrado no sistema");
+      return Promise.reject("O email já está cadastrado no sistema");
     }
 
-}),
+  }),
 
 ];
 
-module.exports = validacaoUsuario;
+module.exports = validacaoUser;

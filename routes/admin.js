@@ -5,41 +5,42 @@ const authAdmin = require("../middlewares/authAdmin");
 
 const adminController = require("../controllers/adminController");
 
-const generoController = require("../controllers/generoController");
-const categoriaController = require("../controllers/categoriaController");
-const classificacaoController = require("../controllers/classificacaoController");
+const genreController = require("../controllers/genreController");
+const categoryController = require("../controllers/categoryController");
+const ratingController = require("../controllers/ratingController");
 
-const usuarioController = require("../controllers/usuarioController");
-const historiaController = require("../controllers/historiaController");
-const capituloController = require("../controllers/capituloController");
+const userController = require("../controllers/userController");
+const storyController = require("../controllers/storyController");
+const chapterController = require("../controllers/chapterController");
 
-const generoRouter = require("../routes/genero");
-const categoriaRouter = require("../routes/categoria");
-const classificacaoRouter = require("../routes/classificacao");
+const genreRouter = require("../routes/genre");
+const categoryRouter = require("../routes/category");
+const ratingRouter = require("../routes/rating");
 
-const adminUsuarioRouter = require("../routes/adminUsuario");
-const adminHistoriaRouter = require("../routes/adminHistoria");
-const adminCapituloRouter = require("../routes/adminCapitulo");
+const adminUserRouter = require("../routes/adminUser");
+const adminStoryRouter = require("../routes/adminStory");
+const adminChapterRouter = require("../routes/adminChapter");
 
-router.get("/", adminController.create);
-router.post("/", adminController.store);
-router.get("/logout", authAdmin, adminController.destroy);
-router.get("/painel", authAdmin, adminController.index);
+router.get("/", adminController.checkSession);
+router.post("/", adminController.login);
 
-router.get("/genres", authAdmin, generoController.index);
-router.get("/categories", authAdmin, categoriaController.index);
-router.get("/ratings", authAdmin, classificacaoController.index);
+router.get("/home", authAdmin, adminController.home);
+router.get("/logout", authAdmin, adminController.logout);
 
-router.use("/genre", generoRouter);
-router.use("/category", categoriaRouter);
-router.use("/rating", classificacaoRouter);
+router.get("/genres", authAdmin, genreController.index);
+router.get("/categories", authAdmin, categoryController.index);
+router.get("/ratings", authAdmin, ratingController.index);
 
-router.get("/users", authAdmin, usuarioController.index);
-router.get("/stories", authAdmin, historiaController.index);
-router.get("/chapters", authAdmin, capituloController.index);
+router.get("/users", authAdmin, userController.index);
+router.get("/stories", authAdmin, storyController.index);
+router.get("/chapters", authAdmin, chapterController.index);
 
-router.use("/user", adminUsuarioRouter);
-router.use("/story", adminHistoriaRouter);
-router.use("/chapter", adminCapituloRouter);
+router.use("/user", adminUserRouter);
+router.use("/story", adminStoryRouter);
+router.use("/chapter", adminChapterRouter);
+
+router.use("/genre", genreRouter);
+router.use("/category", categoryRouter);
+router.use("/rating", ratingRouter);
 
 module.exports = router;

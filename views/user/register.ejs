@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<%- include("../includes/head") %>
+
+  <body>
+    <%- include("../includes/header") %>
+      <main class="mainPrincipal mainAddUser">
+
+        <h1 class="titleAddUser">
+          <%= title %>
+        </h1>
+
+        <% if (typeof(errors) !=="undefined" ) { %>
+          <ul>
+            <% errors.forEach((error)=> { %>
+              <li>
+                <%= error.msg %>
+              </li>
+              <% }) %>
+          </ul>
+          <% } %>
+
+            <ul class="errorList" hidden></ul>
+
+            <form action="/register" method="POST" class="formAddUser">
+
+              <label for="username">Username</label>
+              <input type="text" id="username" name="username" placeholder="Username">
+
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" placeholder="Email">
+
+              <label for="password">Password</label>
+              <input type="password" id="password" name="password" placeholder="Password">
+
+              <button type="submit" class="btnAdd">Register</button>
+              <a href="/login"><button type="button" class="btnUser">Login</button></a>
+
+            </form>
+
+      </main>
+      <%- include("../includes/footer") %>
+        <%- include("../includes/scripts") %>
+
+          <script type="text/javascript">
+
+            // VALIDAR CAMPOS DO FORMULÁRIO
+
+            function campoVazio(campo) {
+              return campo.value.trim() === "";
+            }
+
+            function campoNaoPreenchido(campo) {
+              return errorList.innerHTML += "<li>Campo <b>" + campo + "</b> não preenchido</li>";
+            }
+
+            const formAddUser = document.querySelector(".formAddUser");
+            const username = document.getElementById("username");
+            const email = document.getElementById("email");
+            const password = document.getElementById("password");
+
+            const errorList = document.querySelector(".errorList");
+
+            formAddUser.addEventListener("submit", function (event) {
+
+              errorList.innerHTML = "";
+
+              if (campoVazio(username)) {
+                campoNaoPreenchido("username");
+              };
+
+              if (campoVazio(email)) {
+                campoNaoPreenchido("email");
+              };
+
+              if (campoVazio(password)) {
+                campoNaoPreenchido("password");
+              };
+
+              if (errorList.querySelectorAll("li").length > 0) {
+                event.preventDefault();
+                errorList.hidden = "";
+              };
+
+            });
+
+          </script>
+
+  </body>
+
+</html>

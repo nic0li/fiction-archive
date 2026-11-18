@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<%- include("../includes/head") %>
+
+  <body>
+    <%- include("../includes/header") %>
+      <main class="mainPrincipal mainIndexChapters">
+
+        <h1 class="titleIndexChapters">
+          <%= title %>
+        </h1>
+
+        <table class="tableData">
+          <% chapters.forEach(chapter=> { %>
+            <tr>
+              <td>
+                <%= chapter.title %>
+              </td>
+              <td>
+                <% if (typeof authUser !=="undefined" ) { %>
+
+                  <a href="/story/<%= story.directory %>/chapter/<%= chapter.id %>"><button type="button"
+                      class="btnView">View</button></a>
+
+                  <% } else if (typeof authAdmin !=="undefined" ) { %>
+
+                    <!-- NÃO ATIVA -->
+                    <a href="/story/<%= story.directory %>/chapter/<%= chapter.id %>"><button type="button"
+                        class="btnView">View</button></a>
+
+                    <!-- NÃO ATIVA -->
+                    <form action="/story/<%= story.directory %>/chapter/<%= chapter.id %>/delete?_method=DELETE"
+                      method="POST">
+                      <button type="submit" class="btnDelete">Delete</button>
+                    </form>
+
+                    <% } %>
+              </td>
+            </tr>
+            <% }); %>
+        </table>
+
+      </main>
+      <%- include("../includes/footer") %>
+        <%- include("../includes/scripts") %>
+  </body>
+
+</html>

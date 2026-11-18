@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<%- include("../includes/head") %>
+
+  <body>
+    <%- include("../includes/header") %>
+      <main class="mainPrincipal mainListChapters">
+
+        <h1 class="titleListChapters">
+          <%= title %>
+        </h1>
+
+        <p><a href="/story/<%= story.directory %>/chapter/new"><button type="button" class="btnAdd">New
+              chapter</button></a></p>
+
+        <table class="tableData">
+          <% chapters.forEach(chapter=> { %>
+            <tr>
+              <td>
+                <%= chapter.title %>
+              </td>
+              <td>
+                <a href="/story/<%= story.directory %>/chapter/<%= chapter.id %>"><button type="button"
+                    class="btnView">View</button></a>
+                <a href="/story/<%= story.directory %>/chapter/<%= chapter.id %>/edit"><button type="button"
+                    class="btnEdit">Edit</button></a>
+                <form action="/story/<%= story.directory %>/chapter/<%= chapter.id %>/delete?_method=DELETE"
+                  method="POST">
+                  <button type="submit" class="btnDelete">Delete</button>
+                </form>
+              </td>
+            </tr>
+            <% }); %>
+        </table>
+
+      </main>
+      <%- include("../includes/footer") %>
+        <%- include("../includes/scripts") %>
+  </body>
+
+</html>

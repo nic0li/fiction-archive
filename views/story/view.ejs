@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<%- include("../includes/head") %>
+
+  <body>
+    <%- include("../includes/header") %>
+      <main class="mainPrincipal mainStory">
+
+        <h1 class="titleStory"><%= story.title %></h1>
+
+        <p>
+        Written by <%= user.username %><br />
+        Published on <%= moment(story.createdAt).format("LLL") %><br /><br />
+
+        <b>Rating:</b> <%= story.Rating.name %><br />
+        <b>Status:</b>
+        <% if (story.isCompleted==true) { %>
+           Finished
+          <% } else if (story.isCompleted==false) { %>
+            Work in progress
+            <% } %><br />
+
+        <b>Synopsis:</b>
+          <%= story.synopsis %>
+        </p>
+
+              <h2>Chapters</h2>
+
+              <table class="tableData">
+                <% chapters.forEach(chapter=> { %>
+                  <tr>
+                    <td>
+                      <%= chapter.title %>
+                    </td>
+                    <td>
+                      <a href="/story/<%= story.directory %>/chapter/<%= chapter.id %>"><button type="button"
+                          class="btnView">View</button></a>
+                      </form>
+                    </td>
+                  </tr>
+                  <% }); %>
+              </table>
+
+      </main>
+      <%- include("../includes/footer") %>
+        <%- include("../includes/scripts") %>
+  </body>
+
+</html>

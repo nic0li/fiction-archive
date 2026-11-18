@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<%- include("../../includes/head") %>
+
+  <body>
+    <%- include("../../includes/header") %>
+      <main class="mainPrincipal mainIndexCategories">
+
+        <h1 class="titleIndexCategories">
+          <%= title %>
+        </h1>
+
+        <p><a href="/admin/category/new"><button type="button" class="btnAdd">New</button></a></p>
+
+        <table class="tableData">
+          <tr>
+            <th>Category</th>
+            <th>Action</th>
+          </tr>
+          <% categories.forEach(category=> { %>
+            <tr>
+              <td>
+                <%= category.name %>
+              </td>
+              <td>
+                <a href="/admin/category/edit/<%= category.id %>"><button type="button" class="btnEdit">Edit</button></a>
+                <form action="/admin/category/delete/<%= category.id %>?_method=DELETE" method="POST">
+                  <button type="submit" class="btnDelete">Delete</button>
+                </form>
+              </td>
+            </tr>
+            <% }); %>
+        </table>
+
+      </main>
+      <%- include("../../includes/footer") %>
+        <%- include("../../includes/scripts") %>
+  </body>
+
+</html>

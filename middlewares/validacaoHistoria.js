@@ -1,13 +1,13 @@
 const { check, validationResult, body } = require("express-validator");
 
-const validacaoHistoria = [
+const validacaoStory = [
 
-check("titulo"),
-check("capa"),
-check("sinopse"),
-check("classificacao"),
-check("finalizada"),
+  check("title"),
+  check("cover"),
+  check("synopsis"),
+  check("rating"),
+  check("isCompleted"),
 
 ];
 
-module.exports = validacaoHistoria;
+module.exports = validacaoStory;

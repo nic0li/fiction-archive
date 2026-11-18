@@ -1,536 +1,528 @@
 body {
-    background: #eeeeee;
-    font-family: "Open Sans", Arial, Helvetica, sans-serif;
-    font-size: 1rem;
-    font-weight: 400;
-    line-height: 1.5;
-    color: #000000;
-    text-align: left;
-    margin: 0;
+  background: #eeeeee;
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #000000;
+  text-align: left;
+  margin: 0;
 }
 
 p:empty,
 h1:empty,
 h2:empty {
-    display: none;
+  display: none;
 }
 
 label,
 input,
-button, 
+button,
 textarea,
 select,
 optgroup {
-    font-family: inherit;
-    font-size: inherit;
-    line-height: inherit;
-    margin: 0;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  margin: 0;
 }
 
 button {
-    margin: .75rem 0rem 0rem 0rem;
+  margin: .75rem 0rem 0rem 0rem;
 }
 
-.mainPrincipal { 
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background: #ffffff;
-    width: 100%;
-    max-width: 1140px;
-    margin: 0 auto;
-    padding: 20px;
-    box-sizing: border-box;
+.mainPrincipal {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #ffffff;
+  width: 100%;
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 20px;
+  box-sizing: border-box;
 }
 
 .mainPrincipal h1,
 .modalContainer h1 {
-    text-align: center;
-    font-size: 2rem;
-    color: #555555;
-    font-weight: normal;
+  text-align: center;
+  font-size: 2rem;
+  color: #555555;
+  font-weight: normal;
 }
 
 .mainPrincipal h2 {
-    color: #777777;
+  color: #777777;
 }
 
 /* HEADER DA PÁGINA (TOPO) E ITENS DO TOPO */
 
 .headerPrincipal {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    height: 80px;
-    background: #555555;
-    position: sticky;
-    top: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 80px;
+  background: #555555;
+  position: sticky;
+  top: 0;
 }
 
 .headerPrincipal a {
-    color: #ffffff;
-    text-decoration: none;
+  color: #ffffff;
+  text-decoration: none;
 }
 
 .conteudoTopo {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 100%;
-    width: 100%;
-    max-width: 1140px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  max-width: 1140px;
 }
 
 .conteudoTopo ul {
-    display: flex;
-    flex-wrap: wrap;
-    list-style: none;
-    text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  text-align: center;
 }
 
 .conteudoTopo ul li {
-    display: block;
-    padding-right: 20px;
+  display: block;
+  padding-right: 20px;
 }
 
 .logoTopo {
-    color: #ffffff;
-    font-size: 1.25rem;
-    font-weight: bold;
-    padding-left: 20px;
+  color: #ffffff;
+  font-size: 1.25rem;
+  font-weight: bold;
+  padding-left: 20px;
 }
 
 /* FOOTER DA PÁGINA (RODAPÉ) E ITENS DO RODAPÉ */
 
 .footerPrincipal {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    height: 360px;
-    background: #999999;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 120px;
+  background: #999999;
 }
 
 .footerPrincipal p {
-    margin: .75rem;
+  margin: .75rem;
 }
 
 .footerPrincipal a {
-    color: #ffffff;
-    font-size: .75rem;
-    text-decoration: none;
+  color: #ffffff;
+  font-size: .75rem;
+  text-decoration: none;
 }
 
 .footerPrincipal label {
-    font-size: 1.15rem;
+  font-size: 1.15rem;
 }
 
 .footerPrincipal input {
-    text-align: center;
-    margin-bottom: 1rem;
-    width: 240px;
+  text-align: center;
+  margin-bottom: 1rem;
+  width: 240px;
 }
 
-.listaAlertaNews {
-    margin: 0;
+.listAlertNews {
+  margin: 0;
 }
 
 /* TABELAS DOS DADOS */
 
-.tabelaDados {
-    width: 100%;
-    border-collapse: collapse;
+.tableData {
+  width: 100%;
+  border-collapse: collapse;
 }
 
-.tabelaDados td,
-.tabelaDados th {
-    padding: .75rem;
-    border-top: 1px solid #eeeeee;
+.tableData td,
+.tableData th {
+  padding: .75rem;
+  border-top: 1px solid #eeeeee;
 }
 
 /* PÁGINA INDEX */
 
 .mainIndex a {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 .imgInicio {
-    max-width: 100%;
+  max-width: 100%;
 }
 
 /* PÁGINAS DE LOGIN, LOGIN ADMIN E CADASTRO */
 
 .mainLogin form,
 .mainLoginAdmin form,
-.mainCadastrarUsuario form {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    align-content: center;
-    background: #ffffff;
-    width: 50%;
-    min-width: 200px;
-    max-width: 300px;
-    padding: 20px;
-    margin: 20px;
-    border: solid 1px #999999;
-    border-radius: 3px 3px 3px 3px;
-    box-shadow: 3px 3px 3px 3px #eeeeee;
+.mainAddUser form {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  background: #ffffff;
+  width: 50%;
+  min-width: 200px;
+  max-width: 300px;
+  padding: 20px;
+  margin: 20px;
+  border: solid 1px #999999;
+  border-radius: 3px 3px 3px 3px;
+  box-shadow: 3px 3px 3px 3px #eeeeee;
 }
 
 .mainLogin label,
 .mainLoginAdmin label,
-.mainCadastrarUsuario label {
-    line-height: 2rem;
+.mainAddUser label {
+  line-height: 2rem;
 }
 
 .mainLogin input,
 .mainLoginAdmin input,
-.mainCadastrarUsuario input {
-    width: 200px;
-    margin-bottom: 10px;
+.mainAddUser input {
+  width: 200px;
+  margin-bottom: 10px;
 }
 
 .mainLogin button,
 .mainLoginAdmin button,
-.mainCadastrarUsuario button,
+.mainAddUser button,
 .mainLogin a,
 .mainLoginAdmin a,
-.mainCadastrarUsuario a {
-    width: 100px;
+.mainAddUser a {
+  width: 100px;
 }
 
 .mainLogin p,
 .mainLoginAdmin p,
-.mainCadastrarUsuario p {
-    text-align: center;
+.mainAddUser p {
+  text-align: center;
 }
 
 /* PÁGINA INÍCIO */
 
 .mainHome button,
 .mainPainelAdmin button {
-    margin: 10px;
-    width: 150px;
-    height: 50px;
-    border-radius: 10px;
-    border: 1px solid #cccccc;
-    box-shadow: 3px 3px 3px 3px #eeeeee;
+  margin: 10px;
+  width: 150px;
+  height: 50px;
+  border-radius: 10px;
+  border: 1px solid #cccccc;
+  box-shadow: 3px 3px 3px 3px #eeeeee;
 }
 
 /***** ITENS DO USUÁRIO *****/
 
 /* PÁGINA EDITAR USUÁRIO */
 
-.mainEditarUsuario form,
-.mainEditarUsuario a {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    align-content: center;
-    text-decoration: none;
-    width: 60%;
+.mainEditUser form,
+.mainEditUser a {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  text-decoration: none;
+  width: 60%;
 }
 
-.mainEditarUsuario input,
-.mainEditarUsuario select {
-    width: 60%;
-    min-width: 250px;
+.mainEditUser input,
+.mainEditUser select {
+  width: 60%;
+  min-width: 250px;
 }
 
-.mainEditarUsuario textarea {
-    resize: none;
-    width: 60%;
-    min-width: 250px;
-    height: 150px;
+.mainEditUser textarea {
+  resize: none;
+  width: 60%;
+  min-width: 250px;
+  height: 150px;
 }
 
-.mainEditarUsuario button {
-    width: 150px;
+.mainEditUser button {
+  width: 150px;
 }
 
 /* HISTÓRIA */
 
-.mainPublicarHistoria form,
-.mainEditarHistoria form {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    align-content: center;
-    width: 60%;
+.mainNewStory form,
+.mainEditStory form {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  width: 60%;
 }
 
-.mainPublicarHistoria input,
-.mainEditarHistoria input,
-.mainPublicarHistoria select,
-.mainEditarHistoria select {
-    width: 60%;
-    min-width: 250px;
+.mainNewStory input,
+.mainEditStory input,
+.mainNewStory select,
+.mainEditStory select {
+  width: 60%;
+  min-width: 250px;
 }
 
-.mainPublicarHistoria textarea,
-.mainEditarHistoria textarea {
-    resize: none;
-    width: 60%;
-    min-width: 250px;
-    height: 150px;
+.mainNewStory textarea,
+.mainEditStory textarea {
+  resize: none;
+  width: 60%;
+  min-width: 250px;
+  height: 150px;
 }
 
-.mainPublicarHistoria button,
-.mainEditarHistoria button {
-    width: 150px;
+.mainNewStory button,
+.mainEditStory button {
+  width: 150px;
 }
 
 /* CAPÍTULO */
 
-.mainPublicarCapitulo form,
-.mainEditarCapitulo form {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    align-content: center;
-    width: 100%;
+.mainNewChapter form,
+.mainEditChapter form {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  width: 100%;
 }
 
-.mainPublicarCapitulo input,
-.mainEditarCapitulo input,
-.mainPublicarCapitulo select,
-.mainEditarCapitulo select {
-    min-width: 250px;
-    width: 80%;
+.mainNewChapter input,
+.mainEditChapter input,
+.mainNewChapter select,
+.mainEditChapter select {
+  min-width: 250px;
+  width: 80%;
 }
 
-.mainPublicarCapitulo textarea,
-.mainEditarCapitulo textarea {
-    resize: none;
-    width: 80%;
-    min-width: 250px;
+.mainNewChapter textarea,
+.mainEditChapter textarea {
+  resize: none;
+  width: 80%;
+  min-width: 250px;
 }
 
-.textareaCapitulo {
-    height: 500px;
+.textareaChapter {
+  height: 500px;
 }
 
-.mainPublicarCapitulo button,
-.mainEditarCapitulo button {
-    width: 150px;
+.mainNewChapter button,
+.mainEditChapter button {
+  width: 150px;
 }
 
-.mainCapitulo {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    align-content: center;
+.mainChapter {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
 }
 
-.textoCapitulo {
-    text-align: justify;
+.contentChapter {
+  text-align: justify;
 }
 
 /* PÁGINAS ADMIN DE CADASTRO DE CLASSIFICAÇÃO, GÊNERO E CATEGORIA */
 
-.mainCadastrarClassificacao form,
-.mainEditarClassificacao form,
-.mainCadastrarGenero form,
-.mainEditarGenero form,
-.mainCadastrarCategoria form,
-.mainEditarCategoria form {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    align-content: center;
+.mainAddRating form,
+.mainEditRating form,
+.mainAddGenre form,
+.mainEditGenre form,
+.mainAddCategory form,
+.mainEditCategory form {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
 }
 
-.mainCadastrarClassificacao input,
-.mainEditarClassificacao input,
-.mainCadastrarGenero input,
-.mainEditarGenero input,
-.mainCadastrarCategoria input,
-.mainEditarCategoria input {
-    margin: 10px;
-    min-width: 150px;
-    width: 40%;
+.mainAddRating input,
+.mainEditRating input,
+.mainAddGenre input,
+.mainEditGenre input,
+.mainAddCategory input,
+.mainEditCategory input {
+  margin: 10px;
+  min-width: 150px;
+  width: 40%;
 }
 
-.mainCadastrarClassificacao button,
-.mainEditarClassificacao button,
-.mainCadastrarGenero button,
-.mainEditarGenero button,
-.mainCadastrarCategoria button,
-.mainEditarCategoria button {
-    width: 150px;
+.mainAddRating button,
+.mainEditRating button,
+.mainAddGenre button,
+.mainEditGenre button,
+.mainAddCategory button,
+.mainEditCategory button {
+  width: 150px;
 }
 
-.mainIndexClassificacao,
-.mainIndexGeneros,
-.mainIndexCategorias {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    align-content: center;
+.mainIndexRating,
+.mainIndexGenres,
+.mainIndexCategories {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
 }
 
 /* BOTÕES */
 
-.btnVisualizar,
-.btnLer,
-.btnEditar,
-.btnCapitulos,
-.btnCancelar,
-.btnEnviar,
-.btnAdicionar, 
-.btnUsuario,
+.btnView,
+.btnView,
+.btnEdit,
+.btnChapters,
+.btnCancel,
+.btnSend,
+.btnAdd,
+.btnUser,
 .btnAdmin,
-.btnCadastrar,
-.btnSalvar,
-.btnExcluir,
-.btnEntrar,
-.btnFechar,
-.btnModalSenha,
+.btnAdd,
+.btnSave,
+.btnDelete,
+.btnLogin,
+.btnClose,
+.btnModalPassword,
 .btnModalAvatar,
-.btnAlterarSenha,
-.btnAlterarAvatar,
-.btnFecharSenha,
-.btnFecharAvatar {
-    background: white;
-    cursor: pointer;
+.btnChangePassword,
+.btnChangeAvatar,
+.btnClosePassword,
+.btnCloseAvatar {
+  background: white;
+  cursor: pointer;
 }
 
-.btnAlterarSenha,
-.btnAlterarAvatar,
-.btnFecharSenha,
-.btnFecharAvatar {
-    width: 150px;
+.btnChangePassword,
+.btnChangeAvatar,
+.btnClosePassword,
+.btnCloseAvatar {
+  width: 150px;
 }
 
 /* MEDIA QUERIES */
 
-@media (min-width: 480px) {
+@media (min-width: 480px) {}
 
-}
+@media (min-width: 576px) {}
 
-@media (min-width: 576px) {
+@media (min-width: 768px) {}
 
-}
+@media (min-width: 992px) {}
 
-@media (min-width: 768px) {
-
-}
-
-@media (min-width: 992px) {
- 
-}
-
-@media (min-width: 1200px) {
-
-}
+@media (min-width: 1200px) {}
 
 /* MODAL ALTERAR SENHA DA PÁGINA DE EDITAR USUÁRIO */
 
 .modalContainer {
-    width: 100vw;
-    height: 100vh;
-    background: rgba(0, 0, 0, .5);
-    position: fixed;
-    top: 0px;
-    left: 0px;
-    z-index: 2000;
-    display: none;
-    justify-content: center;
-    align-items: center;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, .5);
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  z-index: 2000;
+  display: none;
+  justify-content: center;
+  align-items: center;
 }
 
 .modalContainer form {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-.mostrarModalSenha,
+.mostrarModalPassword,
 .mostrarModalAvatar {
-    display: flex;
+  display: flex;
 }
 
-.modalSenha,
+.modalPassword,
 .modalAvatar {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    background: white;
-    width: 50%;
-    min-width: 220px;
-    padding: 20px;
-    position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: white;
+  width: 50%;
+  min-width: 220px;
+  padding: 20px;
+  position: relative;
 }
 
-.modalSenha label,
-.modalSenha input,
+.modalPassword label,
+.modalPassword input,
 .modalAvatar label,
 .modalAvatar input {
-    width: 100%;
+  width: 100%;
 }
 
-@keyframes modalSenha {
-    from {
-        opacity: 0;
-        transform: translate3d(0, -60px, 0);
-    }
-    to {
-        opacity: 1;
-        transform: translate3d(0, 0, 0);
-    }
+@keyframes modalPassword {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -60px, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
 }
 
 @keyframes modalAvatar {
-    from {
-        opacity: 0;
-        transform: translate3d(0, -60px, 0);
-    }
-    to {
-        opacity: 1;
-        transform: translate3d(0, 0, 0);
-    }
+  from {
+    opacity: 0;
+    transform: translate3d(0, -60px, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
 }
 
-.mostrarModalSenha .modalSenha,
+.mostrarModalPassword .modalPassword,
 .mostrarModalAvatar .modalAvatar {
-    animation: modalSenha .3s;
+  animation: modalPassword .3s;
 }
 
-.btnFecharModalSenha,
-.btnFecharModalAvatar {
-    position: absolute;
-    top: -20px;
-    right: -20px;
-    width: 40px;
-    height: 40px;
-    border-radius: 50px;
-    border: 4px solid white;
-    cursor: pointer;
+.btnCloseModalPassword,
+.btnCloseModalAvatar {
+  position: absolute;
+  top: -20px;
+  right: -20px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50px;
+  border: 4px solid white;
+  cursor: pointer;
 }
 
 /*
@@ -541,62 +533,62 @@ button {
 .mainIndex, XXX
 .mainHome, XXX
 .mainPainelAdmin, XXX
-.mainCadastrarCategoria, XXX
-.mainEditarCategoria, XXX
-.mainIndexCategorias,
-.mainCadastrarClassificacao, XXX
-.mainEditarClassificacao, XXX
-.mainIndexClassificacoes, 
-.mainCadastrarGenero, XXX
-.mainEditarGenero, XXX
-.mainIndexGeneros,
-.mainEditarCapitulo, XXX
-.mainPublicarCapitulo, XXX
-.mainListarCapitulos,
-.mainIndexCapitulos,
-.mainCapitulo,
-.mainEditarHistoria, XXX
-.mainPublicarHistoria, XXX
-.mainListarHistorias,
-.mainIndexHistorias,
-.mainHistoria,
-.mainCadastrarUsuario, XXX
-.mainEditarUsuario, XXX
-.mainIndexUsuarios,
-.mainUsuario {  
+.mainAddCategory, XXX
+.mainEditCategory, XXX
+.mainIndexCategories,
+.mainAddRating, XXX
+.mainEditRating, XXX
+.mainIndexRatings, 
+.mainAddGenre, XXX
+.mainEditGenre, XXX
+.mainIndexGenres,
+.mainEditChapter, XXX
+.mainNewChapter, XXX
+.mainListChapters,
+.mainIndexChapters,
+.mainChapter,
+.mainEditStory, XXX
+.mainNewStory, XXX
+.mainListStories,
+.mainIndexStories,
+.mainStory,
+.mainAddUser, XXX
+.mainEditUser, XXX
+.mainIndexUsers,
+.mainUser {  
 }
 */
 
 /*
-.tituloErro404,
-.tituloLogin,
-.tituloLoginAdmin,
-.tituloIndex,
-.tituloHome,
-.tituloPainelAdmin,
-.tituloCadastrarCategoria,
-.tituloEditarCategoria,
-.tituloIndexCategorias,
-.tituloCadastrarClassificacao,
-.tituloEditarClassificacao,
-.tituloIndexClassificacoes,
-.tituloCadastrarGenero,
-.tituloEditarGenero,
-.tituloIndexGeneros,
-.tituloEditarCapitulo,
-.tituloPublicarCapitulo,
-.tituloListarCapitulos, 
-.tituloIndexCapitulos,
-.tituloCapitulo,
-.tituloEditarHistoria,
-.tituloPublicarHistoria,
-.tituloListarHistorias, 
-.tituloIndexHistorias,
-.tituloHistoria,
-.tituloCadastrarUsuario,
-.tituloEditarUsuario,
-.tituloIndexUsuarios,
-.tituloUsuario
-.tituloAlterarSenha {  
+.titleErro404,
+.titleLogin,
+.titleLoginAdmin,
+.titleIndex,
+.titleHome,
+.titlePainelAdmin,
+.titleAddCategory,
+.titleEditCategory,
+.titleIndexCategories,
+.titleAddRating,
+.titleEditRating,
+.titleIndexRatings,
+.titleAddGenre,
+.titleEditGenre,
+.titleIndexGenres,
+.titleEditChapter,
+.titleNewChapter,
+.titleListChapters, 
+.titleIndexChapters,
+.titleChapter,
+.titleEditStory,
+.titleNewStory,
+.titleListStories, 
+.titleIndexStories,
+.titleStory,
+.titleAddUser,
+.titleEditUser,
+.titleIndexUsers,
+.titleUser
+.titleChangePassword {  
 }
 */

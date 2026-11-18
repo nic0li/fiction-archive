@@ -1,19 +1,24 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <%- include("includes/head") %>
+
   <body>
-<%- include("includes/header") %>
-    <main class="mainPrincipal mainHome">
+    <%- include("includes/header") %>
+      <main class="mainPrincipal mainHome">
 
-    <h1 class="tituloHome"><%= title %></h1>
+        <h1 class="titleHome">
+          <%= title %>
+        </h1>
 
-    <h2>Bem vindo, @<%= authUsuario.nomeUsuario %></h2>
+        <h2>Hi, @<%= authUser.username %>
+        </h2>
 
-    <a href="/mystories"><button type="button" class="btnUsuario">Minhas histórias</button></a>
-    <a href="/settings"><button type="button" class="btnUsuario">Configurações</button></a>
+        <a href="/mystories"><button type="button" class="btnUser">My stories</button></a>
+        <a href="/settings"><button type="button" class="btnUser">Settings</button></a>
 
-    </main>
-<%- include("includes/footer") %>
-<%- include("includes/scripts") %>
+      </main>
+      <%- include("includes/footer") %>
+        <%- include("includes/scripts") %>
   </body>
+
 </html>

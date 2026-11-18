@@ -8,32 +8,32 @@ const validacaoCadastro = require("../middlewares/validacaoCadastro");
 const uploadAvatar = require("../config/uploadAvatar");
 
 const authController = require("../controllers/authController");
-const usuarioController = require("../controllers/usuarioController");
-const historiaController = require("../controllers/historiaController");
-const capituloController = require("../controllers/capituloController");
-const newsletterController = require("../controllers/newsletterController");
+const userController = require("../controllers/userController");
+const storyController = require("../controllers/storyController");
+const chapterController = require("../controllers/chapterController");
 
-router.get("/", authController.home);
-router.get("/login", authController.create);
-router.post("/login", authController.store);
-router.get("/logout", auth, authController.destroy);
-router.get("/home", auth, authController.index);
-router.post("/newsletter", newsletterController.store);
+router.get("/", authController.index);
 
-router.get("/signup", usuarioController.create);
-router.post("/signup", validacaoCadastro, usuarioController.store);
+router.get("/login", authController.checkSession);
+router.post("/login", authController.login);
 
-router.get("/settings", auth, usuarioController.edit); // separar página de alterar senha
-router.put("/settings", auth, uploadAvatar.any(), usuarioController.update);
-router.post("/settings/password", auth, usuarioController.updatePassword);
-router.post("/settings/avatar", auth, uploadAvatar.any(), usuarioController.updateAvatar);
-router.delete("/delete/:sessaoUsuario", auth, usuarioController.destroy);
+router.get("/home", auth, authController.home);
+router.get("/logout", auth, authController.logout);
 
-router.get("/mystories", auth, historiaController.findStoriesByUser);
-router.get("/mystories/:diretorio/chapters", auth, capituloController.findChaptersByStory);
-router.get("/mystories/:diretorio/chapter", auth, capituloController.findChaptersByStory);
+router.get("/register", userController.create);
+router.post("/register", validacaoCadastro, userController.store);
 
-router.get("/users", auth, usuarioController.index); // tornar pública
-router.get("/stories", auth, historiaController.index); // tornar pública
+router.get("/settings", auth, userController.edit); // separar página de alterar password
+router.put("/settings", auth, uploadAvatar.any(), userController.update);
+router.post("/settings/password", auth, userController.updatePassword);
+router.post("/settings/avatar", auth, uploadAvatar.any(), userController.updateAvatar);
+router.delete("/delete/:authUserSession", auth, userController.destroy);
+
+router.get("/mystories", auth, storyController.findStoriesByUser);
+router.get("/mystories/:directory/chapters", auth, chapterController.findChaptersByStory);
+router.get("/mystories/:directory/chapter", auth, chapterController.findChaptersByStory);
+
+router.get("/users", auth, userController.index); // tornar pública
+router.get("/stories", auth, storyController.index); // tornar pública
 
 module.exports = router;

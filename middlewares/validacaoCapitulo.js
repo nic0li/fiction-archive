@@ -1,12 +1,12 @@
 const { check, validationResult, body } = require("express-validator");
 
-const validacaoCapitulo = [
+const validacaoChapter = [
 
-check("titulo"),
-check("notasIniciais"),
-check("notasFinais"),
-check("texto"),
+  check("title"),
+  check("initialNotes"),
+  check("finalNotes"),
+  check("content"),
 
 ];
 
-module.exports = validacaoCapitulo;
+module.exports = validacaoChapter;

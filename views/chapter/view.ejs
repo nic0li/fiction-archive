@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<%- include("../includes/head") %>
+
+  <body>
+    <%- include("../includes/header") %>
+      <main class="mainPrincipal mainChapter">
+
+        <h2>
+          <%= story.title %>
+        </h2>
+
+        <h1 class="titleChapter">
+          <%= chapter.title %>
+        </h1>
+
+        <p>Published on <%= moment(chapter.createdAt).format("LLL") %>
+        </p>
+        <p>Updated on <%= moment(chapter.updatedAt).format("LLL") %>
+        </p>
+
+        <p><b>Initial notes:</b>
+          <%= chapter.initialNotes %>
+        </p>
+
+        <div class="contentChapter">
+
+          <%- chapter.content %>
+
+        </div>
+
+        <p><b>Final notes:</b>
+          <%= chapter.finalNotes %>
+        </p>
+
+      </main>
+      <%- include("../includes/footer") %>
+        <%- include("../includes/scripts") %>
+
+          <script type="text/javascript">
+
+
+
+          </script>
+
+  </body>
+
+</html>

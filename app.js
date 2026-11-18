@@ -8,13 +8,13 @@ const methodOverride = require("method-override");
 const moment = require("moment");
 
 const indexRouter = require("./routes/index");
-const usuarioRouter = require("./routes/usuario");
-const historiaRouter = require("./routes/historia");
+const userRouter = require("./routes/user");
+const storyRouter = require("./routes/story");
 const adminRouter = require("./routes/admin");
 
 const app = express();
 
-moment.locale("pt-br");
+moment.locale("en-us");
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
@@ -35,13 +35,13 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(methodOverride("_method"));
 
 app.use("/", indexRouter);
-app.use("/user", usuarioRouter);
-app.use("/story", historiaRouter);
+app.use("/user", userRouter);
+app.use("/story", storyRouter);
 app.use("/admin", adminRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
-  res.status(404).render("error", {title: "Erro 404"});
+  res.status(404).render("error", { title: "Error 404" });
   next(createError(404));
 });
 

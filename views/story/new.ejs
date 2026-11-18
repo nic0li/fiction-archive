@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<%- include("../includes/head") %>
+
+  <body>
+    <%- include("../includes/header") %>
+      <main class="mainPrincipal mainNewStory">
+
+        <h1 class="titleNewStory">
+          <%= title %>
+        </h1>
+
+        <form action="/story/new" method="POST">
+
+          <label for="title">Title</label>
+          <input type="text" id="title" name="title" placeholder="Title">
+
+          <label for="cover">Cover</label>
+          <input type="file" id="cover" name="cover">
+
+          <label for="synopsis">Synopsis</label>
+          <textarea id="synopsis" name="synopsis" placeholder="Synopsis" rows="4" cols="30"></textarea>
+
+          <label for="ratingId">Rating</label>
+          <select id="ratingId" name="ratingId" placeholder="Rating">
+            <option value="">Selecione...</option>
+            <% ratings.forEach(rating=> { %>
+              <option value="<%= rating.id %>">
+                <%= rating.name %>
+              </option>
+              <% }); %>
+          </select>
+
+          <label for="isCompleted">Finished?</label>
+          <input type="checkbox" id="isCompleted" name="isCompleted">
+
+          <button type="submit" class="btnAdd">Add</button>
+          <a href="/mystories"><button type="button" class="btnCancel">Cancel</button></a>
+
+        </form>
+
+      </main>
+      <%- include("../includes/footer") %>
+        <%- include("../includes/scripts") %>
+  </body>
+
+</html>

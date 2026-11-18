@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<%- include("includes/head") %>
+
+  <body>
+    <%- include("includes/header") %>
+      <main class="mainPrincipal mainPainelAdmin">
+
+        <h1 class="titlePainelAdmin">
+          <%= title %>
+        </h1>
+
+        <h2>Hi, @<%= authAdmin.username %>
+        </h2>
+
+        <a href="/admin/users"><button type="button" class="btnAdmin">Users</button></a>
+        <a href="/admin/stories"><button type="button" class="btnAdmin">Stories</button></a>
+        <a href="/admin/genres"><button type="button" class="btnAdmin">Genres</button></a>
+        <a href="/admin/categories"><button type="button" class="btnAdmin">Categories</button></a>
+        <a href="/admin/ratings"><button type="button" class="btnAdmin">Ratings</button></a>
+
+      </main>
+      <%- include("includes/footer") %>
+        <%- include("includes/scripts") %>
+  </body>
+
+</html>

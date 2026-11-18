@@ -1,17 +1,14 @@
 const { check, validationResult, body } = require("express-validator");
 
-const validacaoUsuario = [
+const validacaoUser = [
 
-check("nomeUsuario"),
-check("email"),
-check("senha"),
-check("nome"),
-check("avatar"),
-check("descricao"),
-check("dataNascimento"),
-check("genero"),
-check("localizacao"),
+  check("username"),
+  check("email"),
+  check("password"),
+  check("name"),
+  check("avatar"),
+  check("description"),
 
 ];
 
-module.exports = validacaoUsuario;
+module.exports = validacaoUser;

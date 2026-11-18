@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<%- include("../../includes/head") %>
+
+  <body>
+    <%- include("../../includes/header") %>
+      <main class="mainPrincipal mainEditCategory">
+
+        <h1 class="titleEditCategory">
+          <%= title %>
+        </h1>
+
+        <form action="/admin/category/edit/<%= category.id %>?_method=PUT" method="POST">
+          <input type="text" id="name" name="name" placeholder="Category" value="<%= category.name %>">
+          <button type="submit" class="btnSave">Save</button>
+          <a href="/admin/categories"><button type="button" class="btnCancel">Cancel</button></a>
+        </form>
+
+      </main>
+      <%- include("../../includes/footer") %>
+        <%- include("../../includes/scripts") %>
+  </body>
+
+</html>
